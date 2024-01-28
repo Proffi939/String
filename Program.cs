@@ -84,7 +84,7 @@ while(choise != 5)
     if(choise == 3)
     {
         Console.WriteLine("Введите строку (полиндром или нет)");
-        string pol = Convert.ToString(Console.Read());
+        string pol = Console.ReadLine();
         int len = pol.Length;
         int flag = 0;
         for(int i = 0; i < (len /2); i++)
@@ -104,30 +104,51 @@ while(choise != 5)
         }
     }
     //task 4
-    if(choise == 4)
+    if(choise == 4) //пока работает, не трогать
     {   
         Console.WriteLine("Введите предложение");
-        string Str = Convert.ToString(Console.Read());
+        string Str = Console.ReadLine();
         int spacepos = Str.Length - 1;
-        while(spacepos > 1)
+        int charcount = 0;
+        while(spacepos != 0)
         {    
-            int charcount = 0;
-            for(int i = spacepos; i == 0; i--)
+            charcount = 0;
+            while((int)Str[spacepos] != 32)
             {
                 charcount++;
-                if((int)Str[i] == 32)
+                spacepos--;
+                if(spacepos == 0)
                 {
-                    spacepos = i;
                     break;
                 }
             }
-            for(int j = spacepos+1; j < spacepos+charcount; j++)
+            if(spacepos != 0)
             {
-                Console.Write(Str[j]);
+                int newpos = spacepos+1;
+                while(charcount != 0)
+                {
+                    Console.Write(Str[newpos]);
+                    newpos++;
+                    charcount--;
+                }
+                Console.Write(' ');
+                spacepos--;
             }
-
-
+            else
+            {
+                charcount++;
+                int newpos = 0;
+                while(charcount != 0)
+                {
+                    Console.Write(Str[newpos]);
+                    newpos++;
+                    charcount--;
+                }
+                Console.Write(' ');
+            }
+        
         }
+        Console.WriteLine();
     }
 }
 Console.WriteLine("end"+'\n');
